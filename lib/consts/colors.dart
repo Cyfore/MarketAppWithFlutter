@@ -7,3 +7,5 @@ const Color whiteColor = Color.fromRGBO(255, 255, 255, 1);
 const Color lightGrey = Color.fromRGBO(239, 239, 239, 1);
 const Color redColor = Color.fromRGBO(230, 46, 4, 1);
 const Color golden = Color.fromRGBO(255, 168, 0, 1);
+const Color green500 = Color.fromRGBO(76, 175, 80, 1);
+const Color teal600 = Color.fromRGBO(0, 137, 123, 1);
