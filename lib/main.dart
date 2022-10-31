@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:market_app_with_flutter/consts/consts.dart';
 
 import 'views/splash/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

@@ -1,13 +1,28 @@
 import 'package:market_app_with_flutter/consts/consts.dart';
+import 'package:market_app_with_flutter/controllers/auth_controller.dart';
 
 import '../../widgets/applogo.dart';
 import '../../widgets/bg_widget.dart';
 import '../../widgets/custom_textfield.dart';
 import '../../widgets/our_button.dart';
+import '../home/home_screen.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  bool? isCheck = false;
+  var controller = Get.put(AuthController());
+
+  //text controllers
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var passwordRetypeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return bgWidget(
@@ -22,10 +37,11 @@ class SignupScreen extends StatelessWidget {
           10.heightBox,
           Column(
             children: [
-              customTextField(hint: nameHint, title: name),
-              customTextField(hint: emailHint, title: email),
-              customTextField(hint: passwordHint, title: password),
-              customTextField(hint: passwordHint, title: retypePassword),
+              customTextField(hint: nameHint, title: name, controller: nameController),
+              customTextField(hint: emailHint, title: email, controller: emailController),
+              customTextField(hint: passwordHint, title: password, controller: passwordController, isPass: true),
+              customTextField(
+                  hint: passwordHint, title: retypePassword, controller: passwordRetypeController, isPass: true),
               Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -36,8 +52,12 @@ class SignupScreen extends StatelessWidget {
                 children: [
                   Checkbox(
                     checkColor: redColor,
-                    value: false,
-                    onChanged: (newValue) {},
+                    value: isCheck,
+                    onChanged: (newValue) {
+                      setState(() {
+                        isCheck = newValue;
+                      });
+                    },
                   ),
                   10.widthBox,
                   Expanded(
@@ -46,28 +66,28 @@ class SignupScreen extends StatelessWidget {
                       TextSpan(
                         text: "I agree to the ",
                         style: TextStyle(
-                          fontFamily: bold,
+                          fontFamily: regular,
                           color: fontGrey,
                         ),
                       ),
                       TextSpan(
                         text: termAndCond,
                         style: TextStyle(
-                          fontFamily: bold,
+                          fontFamily: regular,
                           color: redColor,
                         ),
                       ),
                       TextSpan(
                         text: " & ",
                         style: TextStyle(
-                          fontFamily: bold,
+                          fontFamily: regular,
                           color: fontGrey,
                         ),
                       ),
                       TextSpan(
                         text: privacyPolicy,
                         style: TextStyle(
-                          fontFamily: bold,
+                          fontFamily: regular,
                           color: redColor,
                         ),
                       ),
@@ -76,10 +96,35 @@ class SignupScreen extends StatelessWidget {
                 ],
               ),
               5.heightBox,
-              ourButton(color: redColor, title: signup, textColor: whiteColor, onPress: () {})
-                  .box
-                  .width(context.screenWidth - 50)
-                  .make(),
+              ourButton(
+                  color: isCheck == true ? redColor : lightGrey,
+                  title: signup,
+                  textColor: whiteColor,
+                  onPress: () async {
+                    if (isCheck != false) {
+                      try {
+                        await controller
+                            .signupMethod(
+                          context: context,
+                          email: emailController,
+                          password: passwordController,
+                        )
+                            .then((value) {
+                          return controller.storeUserData(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            name: nameController.text,
+                          );
+                        }).then((value) {
+                          VxToast.show(context, msg: loggedin);
+                          Get.offAll(() => const Home());
+                        });
+                      } catch (e) {
+                        auth.signOut();
+                        VxToast.show(context, msg: e.toString());
+                      }
+                    }
+                  }).box.width(context.screenWidth - 50).make(),
               10.heightBox,
               RichText(
                   text: const TextSpan(children: [
