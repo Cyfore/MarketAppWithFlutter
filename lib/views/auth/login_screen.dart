@@ -1,6 +1,7 @@
 import 'package:market_app_with_flutter/consts/consts.dart';
 import 'package:market_app_with_flutter/consts/lists.dart';
 import 'package:market_app_with_flutter/views/auth/signup_screen.dart';
+import 'package:market_app_with_flutter/views/home/home_screen.dart';
 import 'package:market_app_with_flutter/widgets/applogo.dart';
 import 'package:market_app_with_flutter/widgets/bg_widget.dart';
 import 'package:market_app_with_flutter/widgets/custom_textfield.dart';
@@ -32,10 +33,13 @@ class LoginScreen extends StatelessWidget {
                     child: forgetPass.text.make(),
                   )),
               5.heightBox,
-              ourButton(color: redColor, title: login, textColor: whiteColor, onPress: () {})
-                  .box
-                  .width(context.screenWidth - 50)
-                  .make(),
+              ourButton(
+                  color: redColor,
+                  title: login,
+                  textColor: whiteColor,
+                  onPress: () {
+                    Get.to(() => const Home());
+                  }).box.width(context.screenWidth - 50).make(),
               5.heightBox,
               createNewAccount.text.color(fontGrey).make(),
               5.heightBox,

@@ -18,3 +18,6 @@ const loggedin = "Logged in successfully";
 const loggedout = "Logged out successfully";
 const termAndCond = "Terms and Conditions";
 const alreadyHaveAccount = "Already have an account? ";
+
+//home strings
+const home = "Home", categories = "Categories", cart = "Cart", account = "Account";
