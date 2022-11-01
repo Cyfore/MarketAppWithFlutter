@@ -5,7 +5,7 @@ import '../../widgets/applogo.dart';
 import '../../widgets/bg_widget.dart';
 import '../../widgets/custom_textfield.dart';
 import '../../widgets/our_button.dart';
-import '../home/home_screen.dart';
+import '../home/home.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:market_app_with_flutter/consts/consts.dart';
 import 'package:market_app_with_flutter/consts/lists.dart';
 import 'package:market_app_with_flutter/views/auth/signup_screen.dart';
-import 'package:market_app_with_flutter/views/home/home_screen.dart';
+import 'package:market_app_with_flutter/views/home/home.dart';
 import 'package:market_app_with_flutter/widgets/applogo.dart';
 import 'package:market_app_with_flutter/widgets/bg_widget.dart';
 import 'package:market_app_with_flutter/widgets/custom_textfield.dart';
