@@ -38,3 +38,7 @@ const searchanything = "Search anything...",
     girlsDress = "Girls Dresses",
     featuredProduct = "Featured Product",
     featuredCategories = "Featured Categories";
+
+// profile strings
+
+const wishlist = "My Wishlist", orders = "My Orders", message = "Messages";

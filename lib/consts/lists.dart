@@ -11,3 +11,6 @@ const featuredImages2 = [imgS4, imgS5, imgS6];
 
 const freaturedTitles1 = [womenDress, girlsDress, girlsWatchers];
 const freaturedTitles2 = [boysGlasses, mobilePhone, tShirts];
+
+const profileButtonsList = [orders, wishlist, message];
+const profileButtonsIcons = [icOrder, icOrder, icMessages];
