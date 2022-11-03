@@ -3,12 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:market_app_with_flutter/consts/consts.dart';
 
 class AuthController extends GetxController {
+  var isLoading = false.obs;
+  //text controllers
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   //login Method
-  Future<UserCredential?> loginMethod({email, password, context}) async {
+  Future<UserCredential?> loginMethod({context}) async {
     UserCredential? userCredential;
 
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
     } on FirebaseAuthException catch (value) {
       VxToast.show(context, msg: value.toString());
     }
@@ -36,6 +41,7 @@ class AuthController extends GetxController {
       'email': email,
       'password': password,
       'imageUrl': '',
+      'id': currentUser!.uid,
     });
   }
 

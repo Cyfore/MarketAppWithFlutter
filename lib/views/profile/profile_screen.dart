@@ -1,5 +1,7 @@
 import 'package:market_app_with_flutter/consts/consts.dart';
 import 'package:market_app_with_flutter/consts/lists.dart';
+import 'package:market_app_with_flutter/controllers/auth_controller.dart';
+import 'package:market_app_with_flutter/views/auth/login_screen.dart';
 import 'package:market_app_with_flutter/views/profile/components/details_cart.dart';
 
 import '../../widgets/bg_widget.dart';
@@ -37,7 +39,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Get.put(AuthController()).signoutMethod(context);
+                    Get.offAll(() => const LoginScreen());
+                  },
                   style: OutlinedButton.styleFrom(
                       side: const BorderSide(
                         color: whiteColor,
