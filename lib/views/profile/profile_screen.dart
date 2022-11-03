@@ -3,6 +3,7 @@ import 'package:market_app_with_flutter/consts/lists.dart';
 import 'package:market_app_with_flutter/controllers/auth_controller.dart';
 import 'package:market_app_with_flutter/views/auth/login_screen.dart';
 import 'package:market_app_with_flutter/views/profile/components/details_cart.dart';
+import 'package:market_app_with_flutter/views/profile/edit_profile_screen.dart';
 
 import '../../widgets/bg_widget.dart';
 
@@ -18,8 +19,11 @@ class ProfileScreen extends StatelessWidget {
         children: [
           //edit profile button
           const Padding(
-              padding: EdgeInsets.all(16),
-              child: Align(alignment: Alignment.topRight, child: Icon(Icons.edit, color: whiteColor))),
+                  padding: EdgeInsets.all(16),
+                  child: Align(alignment: Alignment.topRight, child: Icon(Icons.edit, color: whiteColor)))
+              .onTap(() {
+            Get.to(() => const EditProfileScrenn());
+          }),
           //users details seciton
           Padding(
             padding: const EdgeInsets.only(right: 16),
